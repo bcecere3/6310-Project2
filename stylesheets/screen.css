@@ -3,6 +3,95 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 7, ../sass/screen.scss */
-.test {
-  color: green;
+#hero {
+  background: url(../img/hero.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  margin-top: -64px;
+}
+
+/* line 16, ../sass/screen.scss */
+#housing {
+  background: url(../img/bg-2.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 50vh;
+}
+
+/* line 24, ../sass/screen.scss */
+nav {
+  background-color: #172853;
+}
+
+/* line 27, ../sass/screen.scss */
+.title {
+  font-weight: 700;
+  font-size: 80px;
+}
+
+/* line 31, ../sass/screen.scss */
+.brand-logo {
+  margin-left: 20px;
+}
+
+/* line 34, ../sass/screen.scss */
+.s-title {
+  font-weight: 500;
+  font-size: 60px;
+  color: #172853;
+}
+
+/* line 39, ../sass/screen.scss */
+.sep {
+  width: 100px;
+  border-color: #ff9800;
+  color: #ff9800;
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* line 46, ../sass/screen.scss */
+.s-desc {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.65);
+  margin-top: 30px;
+}
+
+/* line 52, ../sass/screen.scss */
+.img-col h2 {
+  color: white;
+  font-weight: 500;
+  opacity: 0.97;
+  font-size: 42px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+/* line 60, ../sass/screen.scss */
+.img-col p {
+  margin-top: 0;
+  color: white;
+  opacity: 0.8;
+  font-size: 24px;
+}
+/* line 66, ../sass/screen.scss */
+.img-col button {
+  border-radius: 45px;
+}
+
+/* line 70, ../sass/screen.scss */
+footer.page-footer {
+  padding-top: 0;
+  margin-top: 0;
+  background-color: #172853;
+  height: 80px;
+}
+/* line 75, ../sass/screen.scss */
+footer.page-footer .footer-copyright {
+  height: 80px;
+  line-height: 80px;
 }
