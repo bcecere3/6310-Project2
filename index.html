@@ -1,29 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Project 2</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link rel="stylesheet" href="stylesheets/screen.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Project 2</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/screen.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <h4>Click the button to get your coordinates.</h4>
-                <button class="btn blue" onclick="getLocation()">Try It</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <p id="demo"></p>
-            </div>
-        </div>
+<div class="navbar-fixed">
+  <nav role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Atlanta Housing Authority</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Housing Initiative</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Housing Initiative</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
+  </nav>
 </div>
+  <div class="section valign-wrapper" id="hero">
+    <div class="container">
+      <div class="row valign">
+        <div class="col s12 center">
+          <h1 class="white-text title">STRONG. VIBRANT. COMMUNITY.</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        <h2 class="s-title">Welcome!</h2>
+      </div>
+    </div>
+    <hr class="sep">
+    <div class="row">
+      <div class="col s12 center">
+        <p class="s-desc">For nearly eight decades, the Atlanta Housing Authority (AHA) has been at the forefront of providing affordable housing for many low-income families in the city of Atlanta. Though housing remains AHA’s core mission, in recent years, the authority has broadened its focus to include not just high quality housing in amenity-rich neighborhoods but a model that promotes self-sufficiency and active aging, improves the overall quality of life of our participants, and contributes to the betterment of the surrounding communities. Today, AHA is the largest public housing authority in Georgia and one of the largest in the nation, serving more than 50,000 people.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section valign-wrapper" id="housing">
+  <div class="container">
+    <div class="row valign">
+      <div class="col s12 center img-col">
+        <h2>we aren't building houses. we're building homes.</h2>
+        <p>Over the next 5 years, we will be converting over 5000 acres of public space into much needed housing to support Atlanta's growing population.</p>
+        <button class="btn-large z-depth-0 orange darken-1">Visit Development Locations</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="container">
+      This site was created for the purposes of a class project and is not associated with the actual AHA.
+    </div>
+  </div>
+</footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/geo-test.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.3.1/aframe.min.js"></script>
+
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-<script src="js/geo-test.js"></script>
+
