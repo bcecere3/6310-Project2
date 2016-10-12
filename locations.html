@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Project 2</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.3.1/aframe.min.js"></script>
+    <link href="css/screen.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Atlanta Housing Authority</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="locations.html">Housing Initiative</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="locations.html">Housing Initiative</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+</div>
+<div id="geo-loader-wrapper" class="geo-loader-wrapper">
+    <div id="geo-inner" class="center">
+        <h6 class="grey-text lighten-2" style="padding-bottom: 30px">FETCHING YOUR LOCATION</h6>
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section" id="geo-info" style="position: absolute; width: 100%; z-index: 10; padding-top: 0 !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Your location:</h4>
+                <p id="demo"></p>
+            </div>
+        </div>
+        <div id="no-park" class="row">
+            <div class="col s12 center">
+                <h4>It seems you aren't near any parks</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section" style="position: absolute; padding: 0">
+    <a-scene id="scene">
+        <a-curvedimage src="img/piedmont.jpg" height="80.0" radius="50" theta-length="360"
+                       rotation="0 0 0" scale="10 10 10"></a-curvedimage>
+        <a-sphere id="sphere-1" position="10 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-box id="box-1" position="5 0.5 1" rotation="0 45 0" width="1" height="3" depth="1"  color="grey"></a-box>
+        <a-box id="box-2" position="-4 0.5 2" rotation="0 60 0" width="3" height="2.5" depth="1"  color="grey"></a-box>
+        <a-cylinder id="cylinder-1" position="1 -100 1" radius="130" height=".1" color="green"></a-cylinder>
+        <!--<a-plane id="plane-1" position="1 -100 0" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane>-->
+        <a-sky color="#ECECEC"></a-sky>
+        <a-entity position="0 0 3.8">
+            <a-camera>
+                <a-cursor color="#2E3A87">
+            </a-camera>
+        </a-entity>
+    </a-scene>
+</div>
+<div class="section" style="height: 100vh"></div>
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script src="js/geo-test.js"></script>
+
+<script>
+    getLocation();
+</script>
+</body>
+</html>

@@ -77,3 +77,19 @@ footer.page-footer{
     line-height: 80px;
   }
 }
+#geo-loader-wrapper{
+  text-align: center;
+  height: 100vh;
+  margin-top: -64px;
+  div.center{
+    margin-top: 23em;
+  }
+}
+#no-park{
+  display: none;
+}
+#geo-info{
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+}

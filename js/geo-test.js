@@ -6,8 +6,10 @@ var coord = {};
 var piedmont = {"SW": [33.781807, -84.378261], "NW": [33.787427, -84.378041], "NE": [33.786195, -84.370759], "SE":[33.781949, -84.368649]};
 $(document).ready(function () {
     $(".button-collapse").sideNav();
+    $("#geo-inner").css("margin-top","23em");
 });
 function getLocation() {
+    console.log("go");
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -16,6 +18,8 @@ function getLocation() {
 }
 function showPosition(position) {
     // console.log(piedmont);
+    $('#geo-loader-wrapper').css("display","none");
+    $('.preloader-wrapper').removeClass("active");
     coord.latitude = position.coords.latitude;
     coord.longitude = position.coords.longitude;
     checkPiedmont(coord);
@@ -31,9 +35,11 @@ function checkPiedmont(c){
         }
         else{
             console.log("wrong long")
+            $('#no-park').css("display","initial");
         }
     }
     else{
         console.log("wrong lat");
+        $('#no-park').css("display","initial");
     }
 }
