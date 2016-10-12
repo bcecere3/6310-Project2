@@ -34,6 +34,7 @@ function checkPiedmont(c){
     if(long >= piedmont.SW[1] && long <= piedmont.SE[1]){
         if(lat >= piedmont.SW[0] && lat <= piedmont.NW[0]){
             console.log("you are in piedmont park");
+            $('#piedmont-scene').css("display","initial");
             $('#no-park').css("display","none");
             $('#in-piedmont').css("display","initial");
         }
