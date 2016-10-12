@@ -27,14 +27,18 @@ function showPosition(position) {
         "<br>Longitude: " + position.coords.longitude;
 }
 function checkPiedmont(c){
-    var lat = c.latitude;
-    var long = c.longitude;
+    var lat = 33.782932;
+    var long = -84.375238;
+    // var lat = c.latitude;
+    // var long = c.longitude;
     if(long >= piedmont.SW[1] && long <= piedmont.SE[1]){
         if(lat >= piedmont.SW[0] && lat <= piedmont.NW[0]){
             console.log("you are in piedmont park");
+            $('#no-park').css("display","none");
+            $('#in-piedmont').css("display","initial");
         }
         else{
-            console.log("wrong long")
+            console.log("wrong long");
             $('#no-park').css("display","initial");
         }
     }

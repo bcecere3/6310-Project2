@@ -85,11 +85,14 @@ footer.page-footer{
     margin-top: 23em;
   }
 }
-#no-park{
+#no-park, #in-piedmont{
   display: none;
 }
 #geo-info{
   position: absolute;
   z-index: 10;
   width: 100%;
+}
+#box-1{
+  opacity: 0.5;
 }
