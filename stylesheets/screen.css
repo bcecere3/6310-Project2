@@ -108,7 +108,7 @@ footer.page-footer .footer-copyright {
 }
 
 /* line 88, ../sass/screen.scss */
-#no-park {
+#no-park, #in-piedmont, #in-candler, #in-centennial {
   display: none;
 }
 
@@ -117,4 +117,9 @@ footer.page-footer .footer-copyright {
   position: absolute;
   z-index: 10;
   width: 100%;
+}
+
+/* line 96, ../sass/screen.scss */
+#box-1 {
+  opacity: 0.5;
 }

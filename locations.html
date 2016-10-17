@@ -11,7 +11,7 @@
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.3.1/aframe.min.js"></script>
-    <link href="css/screen.css" type="text/css" rel="stylesheet"/>
+    <link href="stylesheets/screen.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <div class="navbar-fixed">
@@ -63,40 +63,119 @@
                 <h4>You are in Piedmont Park!</h4>
             </div>
         </div>
+        <div id="in-candler" class="row">
+            <div class="col s12 center">
+                <h4>You are in Candler Park!</h4>
+            </div>
+        </div>
+        <div id="in-centennial" class="row">
+            <div class="col s12 center">
+                <h4>You are in Centennial Olympic Park!</h4>
+            </div>
+        </div>
     </div>
 </div>
-<div id="piedmont-scene" class="section" style="position: absolute; padding: 0">
+<div class="section" style="position: absolute; padding: 0">
     <a-scene id="scene">
-        <a-asset-item id="bldg-tunnel-obj" src="img/bldg-tunnel.obj"></a-asset-item>
-        <a-asset-item id="bldg-tunnel-mtl" src="img/bldg-tunnel.mtl"></a-asset-item>
-        <a-asset-item id="bldg-1-obj" src="img/bldg-1.obj"></a-asset-item>
-        <a-asset-item id="bldg-1-mtl" src="img/bldg-1.mtl"></a-asset-item>
-        <a-asset-item id="bldg-2-obj" src="img/bldg-1.obj"></a-asset-item>
-        <a-asset-item id="bldg-2-mtl" src="img/bldg-1.mtl"></a-asset-item>
-        <a-asset-item id="bldg-3-obj" src="img/bldg-1.obj"></a-asset-item>
-        <a-asset-item id="bldg-3-mtl" src="img/bldg-1.mtl"></a-asset-item>
-        <a-asset-item id="bldg-4-obj" src="img/bldg-1.obj"></a-asset-item>
-        <a-asset-item id="bldg-4-mtl" src="img/bldg-1.mtl"></a-asset-item>
-        <a-entity obj-model="obj: #bldg-tunnel-obj; mtl: #bldg-tunnel-mtl" id="bldg-tunnel" position="1.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
-        <a-entity obj-model="obj: #bldg-1-obj; mtl: #bldg-1-mtl" id="bldg-1" position="15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
-        <a-entity obj-model="obj: #bldg-2-obj; mtl: #bldg-2-mtl" id="bldg-2" position="28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
-        <a-entity obj-model="obj: #bldg-3-obj; mtl: #bldg-3-mtl" id="bldg-3" position="-15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
-        <a-entity obj-model="obj: #bldg-4-obj; mtl: #bldg-4-mtl" id="bldg-4" position="-28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
-        <!--<a-curvedimage src="img/piedmont.jpg" height="80.0" radius="50" theta-length="360"-->
-                       <!--rotation="0 0 0" scale="10 10 10"></a-curvedimage>-->
-        <!--<a-sphere id="sphere-1" position="10 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>-->
-        <!--<a-box id="box-1" position="5 0.5 1" rotation="0 45 0" width="1" height="3" depth="1"  color="grey"></a-box>-->
-        <!--<a-box id="box-2" position="-4 0.5 2" rotation="0 60 0" width="3" height="2.5" depth="1"  color="grey"></a-box>-->
-        <!--<a-cylinder id="cylinder-1" position="1 -100 1" radius="130" height=".1" color="green"></a-cylinder>-->
-        <!--<a-plane id="plane-1" position="1 -100 0" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane>-->
-        <a-sky src="img/piedmont-park.png"></a-sky>
-        <a-entity position="0 0 3.8">
-            <a-camera>
-                <a-cursor color="#2E3A87">
-            </a-camera>
+        <a-entity id="piedmont-entity" visible="false">
+            <a-asset-item id="bldg-tunnel-obj" src="img/bldg-tunnel.obj"></a-asset-item>
+            <a-asset-item id="bldg-tunnel-mtl" src="img/bldg-tunnel.mtl"></a-asset-item>
+            <a-asset-item id="bldg-1-obj" src="img/bldg-1.obj"></a-asset-item>
+            <a-asset-item id="bldg-1-mtl" src="img/bldg-1.mtl"></a-asset-item>
+            <a-asset-item id="bldg-2-obj" src="img/bldg-1.obj"></a-asset-item>
+            <a-asset-item id="bldg-2-mtl" src="img/bldg-1.mtl"></a-asset-item>
+            <a-asset-item id="bldg-3-obj" src="img/bldg-1.obj"></a-asset-item>
+            <a-asset-item id="bldg-3-mtl" src="img/bldg-1.mtl"></a-asset-item>
+            <a-asset-item id="bldg-4-obj" src="img/bldg-1.obj"></a-asset-item>
+            <a-asset-item id="bldg-4-mtl" src="img/bldg-1.mtl"></a-asset-item>
+            <a-entity obj-model="obj: #bldg-tunnel-obj; mtl: #bldg-tunnel-mtl" id="bldg-tunnel" position="1.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
+            <a-entity obj-model="obj: #bldg-1-obj; mtl: #bldg-1-mtl" id="bldg-1" position="15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
+            <a-entity obj-model="obj: #bldg-2-obj; mtl: #bldg-2-mtl" id="bldg-2" position="28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
+            <a-entity obj-model="obj: #bldg-3-obj; mtl: #bldg-3-mtl" id="bldg-3" position="-15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
+            <a-entity obj-model="obj: #bldg-4-obj; mtl: #bldg-4-mtl" id="bldg-4" position="-28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
+            <a-sky src="img/piedmont-park.png"></a-sky>
+            <a-entity position="0 0 3.8">
+                <a-camera>
+                    <a-cursor color="#2E3A87">
+                </a-camera>
+            </a-entity>
+        </a-entity>
+        <a-entity id="candler-entity" visible="false">
+            <a-sky src="img/chandler-park.png"></a-sky>
+            <a-entity position="0 0 3.8">
+                <a-camera>
+                    <a-cursor color="#2E3A87">
+                </a-camera>
+            </a-entity>
+        </a-entity>
+        <a-entity id="centennial-entity" visible="false">
+            <a-asset-item id="bldg-white-obj" src="img/bldg-white.obj"></a-asset-item>
+            <a-asset-item id="bldg-white-mtl" src="img/bldg-white.mtl"></a-asset-item>
+            <a-asset-item id="bldg-white-2-obj" src="img/bldg-white-2.obj"></a-asset-item>
+            <a-asset-item id="bldg-white-2-mtl" src="img/bldg-white-2.mtl"></a-asset-item>
+            <a-entity obj-model="obj: #bldg-white-obj; mtl: #bldg-white-mtl" id="bldg-white" position="20 0 -20" rotation="0 0 0" scale="1 .5 .5"></a-entity>
+            <a-entity obj-model="obj: #bldg-white-2-obj; mtl: #bldg-white-2-mtl" id="bldg-white-2" position="-45 -2 10" rotation="0 45 0" scale=".75 .75 .75"></a-entity>
+            <a-sky src="img/centennial-park.png"></a-sky>
+            <a-entity position="0 0 3.8">
+                <a-camera>
+                    <a-cursor color="#2E3A87">
+                </a-camera>
+            </a-entity>
         </a-entity>
     </a-scene>
 </div>
+<!--<div id="candler-scene" class="section" style="position: absolute; padding: 0">-->
+    <!--<a-scene id="scene">-->
+        <!--<a-asset-item id="bldg-tunnel-obj" src="img/bldg-tunnel.obj"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-tunnel-mtl" src="img/bldg-tunnel.mtl"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-1-obj" src="img/bldg-1.obj"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-1-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-2-obj" src="img/bldg-1.obj"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-2-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-3-obj" src="img/bldg-1.obj"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-3-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-4-obj" src="img/bldg-1.obj"></a-asset-item>-->
+        <!--<a-asset-item id="bldg-4-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+        <!--<a-entity obj-model="obj: #bldg-tunnel-obj; mtl: #bldg-tunnel-mtl" id="bldg-tunnel" position="1.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+        <!--<a-entity obj-model="obj: #bldg-1-obj; mtl: #bldg-1-mtl" id="bldg-1" position="15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+        <!--<a-entity obj-model="obj: #bldg-2-obj; mtl: #bldg-2-mtl" id="bldg-2" position="28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+        <!--<a-entity obj-model="obj: #bldg-3-obj; mtl: #bldg-3-mtl" id="bldg-3" position="-15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+        <!--<a-entity obj-model="obj: #bldg-4-obj; mtl: #bldg-4-mtl" id="bldg-4" position="-28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+        <!--<a-sky src="img/chandler-park.png"></a-sky>-->
+        <!--<a-entity position="0 0 3.8">-->
+            <!--<a-camera>-->
+                <!--<a-cursor color="#2E3A87">-->
+            <!--</a-camera>-->
+        <!--</a-entity>-->
+    <!--</a-scene>-->
+<!--</div>-->
+<!--<div id="centennial-scene" class="section" style="position: absolute; padding: 0">-->
+    <!--<a-scene id="scene">-->
+        <!--<a-entity id="piedmont-entity">-->
+            <!--<a-asset-item id="bldg-tunnel-obj" src="img/bldg-tunnel.obj"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-tunnel-mtl" src="img/bldg-tunnel.mtl"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-1-obj" src="img/bldg-1.obj"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-1-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-2-obj" src="img/bldg-1.obj"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-2-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-3-obj" src="img/bldg-1.obj"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-3-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-4-obj" src="img/bldg-1.obj"></a-asset-item>-->
+            <!--<a-asset-item id="bldg-4-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
+            <!--<a-entity obj-model="obj: #bldg-tunnel-obj; mtl: #bldg-tunnel-mtl" id="bldg-tunnel" position="1.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+            <!--<a-entity obj-model="obj: #bldg-1-obj; mtl: #bldg-1-mtl" id="bldg-1" position="15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+            <!--<a-entity obj-model="obj: #bldg-2-obj; mtl: #bldg-2-mtl" id="bldg-2" position="28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+            <!--<a-entity obj-model="obj: #bldg-3-obj; mtl: #bldg-3-mtl" id="bldg-3" position="-15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+            <!--<a-entity obj-model="obj: #bldg-4-obj; mtl: #bldg-4-mtl" id="bldg-4" position="-28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
+            <!--<a-sky src="img/centennial-park.png"></a-sky>-->
+            <!--<a-entity position="0 0 3.8">-->
+                <!--<a-camera>-->
+                    <!--<a-cursor color="#2E3A87">-->
+                <!--</a-camera>-->
+            <!--</a-entity>-->
+        <!--</a-entity>-->
+    <!--</a-scene>-->
+<!--</div>-->
 <div class="section" style="height: 100vh"></div>
 
 
