@@ -14,21 +14,24 @@
     <link href="stylesheets/screen.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+
+<!--Fixed navbar -->
 <div class="navbar-fixed">
     <nav role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Atlanta Housing Authority</a>
+        <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Atlanta Property Management</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="locations.html">Housing Initiative</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="locations.html">Development Locations</a></li>
             </ul>
             <ul id="nav-mobile" class="side-nav">
-                <li><a href="locations.html">Housing Initiative</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="locations.html">Development Locations</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
 </div>
+
+<!-- Pre-loader spinner that is visible while the javascript finds the user's location.
+     Once coordinates are determined, the pre-loader is hidden -->
 <div id="geo-loader-wrapper" class="geo-loader-wrapper">
     <div id="geo-inner" class="center">
         <h6 class="grey-text lighten-2" style="padding-bottom: 30px">FETCHING YOUR LOCATION</h6>
@@ -45,43 +48,42 @@
         </div>
     </div>
 </div>
+
 <div class="section" id="geo-info" style="position: absolute; width: 100%; z-index: 10; padding-top: 0 !important;">
+
+    <!-- Fixed button at the bottom of the page that activates the info modals.
+         Button text and href attribute changes dynamically based on which park they are in -->
+    <a id="modalTrigger" class="waves-effect waves-light btn modal-trigger" href=""></a>
+
     <div class="container">
-        <div class="row">
-            <div class="col s12">
+        <!-- Placeholder when the user isn't in one of the parks -->
+        <div id="no-park" class="row">
+            <div class="col s12 center">
+                <img src="img/construction.jpg" width="600px">
+                <h4>It seems you aren't near any development sites.</h4>
+                <h5>Development Locations: Piedmont Park, Candler Park, Centennial Olympic Park.</h5>
                 <h4>Your location:</h4>
                 <p id="demo"></p>
             </div>
         </div>
-        <div id="no-park" class="row">
-            <div class="col s12 center">
-                <h4>It seems you aren't near any parks</h4>
-            </div>
-        </div>
-        <div id="in-piedmont" class="row">
-            <div class="col s12 center">
-                <h4>You are in Piedmont Park!</h4>
-            </div>
-        </div>
-        <div id="in-candler" class="row">
-            <div class="col s12 center">
-                <h4>You are in Candler Park!</h4>
-            </div>
-        </div>
-        <div id="in-centennial" class="row">
-            <div class="col s12 center">
-                <h4>You are in Centennial Olympic Park!</h4>
-            </div>
-        </div>
     </div>
 </div>
-<div class="section" style="position: absolute; padding: 0">
+
+<div class="section" style="position: absolute; padding: 0" id="scene-container">
     <a-scene id="scene">
+        <a-assets>
+          <!-- Global assets would go here -->
+            <img src="img/marble.jpg" id="marble">
+        </a-assets>
+
+        <!-- One camera that spans all scenes -->
         <a-entity position="0 0 3.8">
             <a-camera>
                 <a-cursor color="#2E3A87">
             </a-camera>
         </a-entity>
+
+        <!--Piedmont Park Scene -->
         <a-entity id="piedmont-entity" visible="false">
             <a-asset-item id="bldg-tunnel-obj" src="img/bldg-tunnel.obj"></a-asset-item>
             <a-asset-item id="bldg-tunnel-mtl" src="img/bldg-tunnel.mtl"></a-asset-item>
@@ -100,6 +102,8 @@
             <a-entity obj-model="obj: #bldg-4-obj; mtl: #bldg-4-mtl" id="bldg-4" position="-28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>
             <a-sky src="img/piedmont-park.png"></a-sky>
         </a-entity>
+
+        <!--Candler Park Scene -->
         <a-entity id="candler-entity" visible="false">
             <a-asset-item id="bldg-tan-obj" src="img/bldg-tan.obj"></a-asset-item>
             <a-asset-item id="bldg-tan-mtl" src="img/bldg-tan.mtl"></a-asset-item>
@@ -107,83 +111,113 @@
             <a-entity obj-model="obj: #bldg-tan-obj; mtl: #bldg-tan-mtl" id="bldg-tan-1" position="30 -1 30" rotation="0 180 0" scale=".75 .75 .75"></a-entity>
             <a-entity obj-model="obj: #bldg-tan-obj; mtl: #bldg-tan-mtl" id="bldg-tan-2" position="-30 -1 30" rotation="0 180 0" scale=".75 .75 .75"></a-entity>
             <a-sky src="img/chandler-park.png"></a-sky>
-            <!--<a-entity position="0 0 3.8">-->
-                <!--<a-camera>-->
-                    <!--<a-cursor color="#2E3A87">-->
-                <!--</a-camera>-->
-            <!--</a-entity>-->
         </a-entity>
+
+        <!--Centennial Olympic Park Scene -->
         <a-entity id="centennial-entity" visible="false">
             <a-asset-item id="bldg-white-obj" src="img/bldg-white.obj"></a-asset-item>
             <a-asset-item id="bldg-white-mtl" src="img/bldg-white.mtl"></a-asset-item>
             <a-asset-item id="bldg-white-2-obj" src="img/bldg-white-2.obj"></a-asset-item>
             <a-asset-item id="bldg-white-2-mtl" src="img/bldg-white-2.mtl"></a-asset-item>
+            <a-torus color="orange" radius="3" radius-tubular="0.1" arc="360" position="-12 3 6" scale="1 1 1" rotation="0 0 0">
+                <a-animation attribute="rotation"
+                             easing="linear"
+                             delay="0"
+                             dur="2000"
+                             fill="forwards"
+                             to="0 360 0"
+                             repeat="indefinite"></a-animation>
+            </a-torus>
+            <a-torus color="orange" radius="2.5" radius-tubular="0.1" arc="360" position="-12 3 6" scale="1 1 1" rotation="0 0 0">
+                <a-animation attribute="rotation"
+                             easing="linear"
+                             delay="0"
+                             dur="1800"
+                             fill="forwards"
+                             to="-360 360 0"
+                             repeat="indefinite"></a-animation>
+            </a-torus>
+            <a-torus color="orange" radius="1.5" radius-tubular="0.1" arc="360" position="-12 3 6" scale="1 1 1" rotation="0 0 0">
+                <a-animation attribute="rotation"
+                             easing="linear"
+                             delay="0"
+                             dur="1600"
+                             fill="forwards"
+                             to="360 -360 360"
+                             repeat="indefinite"></a-animation>
+            </a-torus>
+            <a-cylinder height="2" radius="3" position="-12 -1.8 6" material="src: #marble; repeat: 0.15 0.15; side: both"></a-cylinder>
+            <a-sphere color="blue" radius="0.5" position="-12 3 6"></a-sphere>
             <a-entity obj-model="obj: #bldg-white-obj; mtl: #bldg-white-mtl" id="bldg-white" position="20 0 -20" rotation="0 0 0" scale="1 .5 .5"></a-entity>
             <a-entity obj-model="obj: #bldg-white-2-obj; mtl: #bldg-white-2-mtl" id="bldg-white-2" position="-45 -2 10" rotation="0 45 0" scale=".75 .75 .75"></a-entity>
             <a-entity obj-model="obj: #bldg-white-2-obj; mtl: #bldg-white-2-mtl" id="bldg-white-3" position="-50 -2 140" rotation="0 80 0" scale="1 1 1"></a-entity>
             <a-sky src="img/centennial-park.png"></a-sky>
-            <!--<a-entity position="0 0 3.8">-->
-                <!--<a-camera>-->
-                    <!--<a-cursor color="#2E3A87">-->
-                <!--</a-camera>-->
-            <!--</a-entity>-->
         </a-entity>
     </a-scene>
 </div>
-<!--<div id="candler-scene" class="section" style="position: absolute; padding: 0">-->
-    <!--<a-scene id="scene">-->
-        <!--<a-asset-item id="bldg-tunnel-obj" src="img/bldg-tunnel.obj"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-tunnel-mtl" src="img/bldg-tunnel.mtl"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-1-obj" src="img/bldg-1.obj"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-1-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-2-obj" src="img/bldg-1.obj"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-2-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-3-obj" src="img/bldg-1.obj"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-3-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-4-obj" src="img/bldg-1.obj"></a-asset-item>-->
-        <!--<a-asset-item id="bldg-4-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-        <!--<a-entity obj-model="obj: #bldg-tunnel-obj; mtl: #bldg-tunnel-mtl" id="bldg-tunnel" position="1.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-        <!--<a-entity obj-model="obj: #bldg-1-obj; mtl: #bldg-1-mtl" id="bldg-1" position="15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-        <!--<a-entity obj-model="obj: #bldg-2-obj; mtl: #bldg-2-mtl" id="bldg-2" position="28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-        <!--<a-entity obj-model="obj: #bldg-3-obj; mtl: #bldg-3-mtl" id="bldg-3" position="-15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-        <!--<a-entity obj-model="obj: #bldg-4-obj; mtl: #bldg-4-mtl" id="bldg-4" position="-28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-        <!--<a-sky src="img/chandler-park.png"></a-sky>-->
-        <!--<a-entity position="0 0 3.8">-->
-            <!--<a-camera>-->
-                <!--<a-cursor color="#2E3A87">-->
-            <!--</a-camera>-->
-        <!--</a-entity>-->
-    <!--</a-scene>-->
-<!--</div>-->
-<!--<div id="centennial-scene" class="section" style="position: absolute; padding: 0">-->
-    <!--<a-scene id="scene">-->
-        <!--<a-entity id="piedmont-entity">-->
-            <!--<a-asset-item id="bldg-tunnel-obj" src="img/bldg-tunnel.obj"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-tunnel-mtl" src="img/bldg-tunnel.mtl"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-1-obj" src="img/bldg-1.obj"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-1-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-2-obj" src="img/bldg-1.obj"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-2-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-3-obj" src="img/bldg-1.obj"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-3-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-4-obj" src="img/bldg-1.obj"></a-asset-item>-->
-            <!--<a-asset-item id="bldg-4-mtl" src="img/bldg-1.mtl"></a-asset-item>-->
-            <!--<a-entity obj-model="obj: #bldg-tunnel-obj; mtl: #bldg-tunnel-mtl" id="bldg-tunnel" position="1.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-            <!--<a-entity obj-model="obj: #bldg-1-obj; mtl: #bldg-1-mtl" id="bldg-1" position="15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-            <!--<a-entity obj-model="obj: #bldg-2-obj; mtl: #bldg-2-mtl" id="bldg-2" position="28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-            <!--<a-entity obj-model="obj: #bldg-3-obj; mtl: #bldg-3-mtl" id="bldg-3" position="-15.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-            <!--<a-entity obj-model="obj: #bldg-4-obj; mtl: #bldg-4-mtl" id="bldg-4" position="-28.5 0 -20" rotation="0 -1 0" scale=".3 .3 .3"></a-entity>-->
-            <!--<a-sky src="img/centennial-park.png"></a-sky>-->
-            <!--<a-entity position="0 0 3.8">-->
-                <!--<a-camera>-->
-                    <!--<a-cursor color="#2E3A87">-->
-                <!--</a-camera>-->
-            <!--</a-entity>-->
-        <!--</a-entity>-->
-    <!--</a-scene>-->
-<!--</div>-->
-<div class="section" style="height: 100vh"></div>
 
+<!-- Centennial Park Modal Content
+     Not visible until the modal trigger button is pressed while the user is in Centennial Olympic Park -->
+<div id="centennial-modal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 style="color: #172853"><b>Centennial Olympic Park</b></h4>
+        <hr style="border-color: #fc8b00; border-style: solid;">
+        <h5>Centennial Village Square Apartments</h5>
+        <ul>
+            <li>Units: 220</li>
+            <li>Property: 5 acres</li>
+            <li>Parking: Off-site</li>
+            <li>Amenities: n/a</li>
+        </ul>
+        <h5>About:</h5>
+        <p>Experience the resurgence of Downtown Atlanta while living in the middle of it all, at the new Centennial Village Square Apartments at Centennial Park. Welcoming residents since late 2020, our new mid-rise community features 220 studio, one-, and two-bedroom apartment homes spanning 5 acres in the heart of the city. Residents will enjoy conveniences like hot water. Located in Centennial Olympic Park, walking distance to MARTA and Hartsfield-Jackson Atlanta International Airport just a short drive away, Centennial Village Square Apartments offers a unique urban experience.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-orange btn orange darken-1">Done</a>
+    </div>
+</div>
+
+<!-- Piedmont Park Modal Content
+     Not visible until the modal trigger button is pressed while the user is in Piedmont Park -->
+<div id="piedmont-modal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 style="color: #172853"><b>Piedmont Park</b></h4>
+        <hr style="border-color: #fc8b00; border-style: solid;">
+        <h5>Active Oval Apartments</h5>
+        <ul>
+            <li>Units: 350</li>
+            <li>Property: 6 acres</li>
+            <li>Parking: Off-site</li>
+            <li>Amenities: Active Oval membership + 1 guest pass per year</li>
+        </ul>
+        <h5>About:</h5>
+        <p>Living at the Active Oval Apartments puts you in the heart of Midtown Atlanta – a destination for fashionable retail, great food and many popular entertainment venues. Active Oval Apartments is also inside Piedmont Park, where residents can enjoy casual strolls, the dog park, the seasonal pool, farmer's markets and local festivals.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-orange btn orange darken-1">Done</a>
+    </div>
+</div>
+
+<!-- Candler Park Modal Content
+     Not visible until the modal trigger button is pressed while the user is in Candler Park -->
+<div id="candler-modal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 style="color: #172853"><b>Candler Park</b></h4>
+        <hr style="border-color: #fc8b00; border-style: solid;">
+        <h5>Pueblo Luxury Apartments</h5>
+        <ul>
+            <li>Units: 200</li>
+            <li>Property: 4 acres</li>
+            <li>Parking: Street</li>
+            <li>Amenities: Candler park pool membership</li>
+        </ul>
+        <h5>About:</h5>
+        <p>For more info, visit our parent company website - www.parkatlanta.com</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-orange btn orange darken-1">Done</a>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/materialize.js"></script>
@@ -191,7 +225,9 @@
 <script src="js/geo-test.js"></script>
 
 <script>
+    //Gets called when the page is loaded
     getLocation();
 </script>
+
 </body>
 </html>

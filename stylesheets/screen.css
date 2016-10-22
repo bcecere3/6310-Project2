@@ -123,3 +123,22 @@ footer.page-footer .footer-copyright {
 #box-1 {
   opacity: 0.5;
 }
+
+/* line 99, ../sass/screen.scss */
+#modalTrigger {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3em;
+  line-height: 3em;
+  font-size: 18px;
+  background-color: #172853;
+}
+
+@media (max-width: 450px) {
+  /* line 111, ../sass/screen.scss */
+  .brand-logo {
+    font-size: 20px !important;
+  }
+}
