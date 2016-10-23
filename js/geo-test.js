@@ -53,12 +53,12 @@ function showPosition(position) {
     // coord.longitude = -84.375238;
     //
     //---Manually sets user's location to Candler Park
-    // coord.latitude = 33.767877;
-    // coord.longitude = -84.337627;
+    coord.latitude = 33.767877;
+    coord.longitude = -84.337627;
     //
     //---Manually sets user's location to Centennial Olympic Park
-    coord.latitude = 33.759117;
-    coord.longitude = -84.392987;
+    // coord.latitude = 33.759117;
+    // coord.longitude = -84.392987;
 
     //If user is in Piedmont Park, render that park scene
     if(checkPiedmont(coord)){

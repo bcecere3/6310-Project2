@@ -75,6 +75,7 @@
         <a-assets>
           <!-- Global assets would go here -->
             <img src="img/marble.jpg" id="marble">
+            <img src="img/sign.jpg" id="sign">
         </a-assets>
 
         <!-- One camera that spans all scenes -->
@@ -108,9 +109,16 @@
         <a-entity id="candler-entity" visible="false">
             <a-asset-item id="bldg-tan-obj" src="img/bldg-tan.obj"></a-asset-item>
             <a-asset-item id="bldg-tan-mtl" src="img/bldg-tan.mtl"></a-asset-item>
+            <a-asset-item id="car-lamba-sport-grey-obj" src="img/car-lamba-sport-grey.obj"></a-asset-item>
+            <a-asset-item id="car-lamba-sport-grey-mtl" src="img/car-lamba-sport-grey.mtl"></a-asset-item>
+            <a-cylinder color="grey" height="3" radius="0.1" position="4 0 0" material="src: #marble; repeat: 0.15 0.15; side: both"></a-cylinder>
+            <a-plane height="1.5" width="3" rotation="0 -20 0" position="4 2.25 0" material="src: #sign"></a-plane>
             <a-entity obj-model="obj: #bldg-tan-obj; mtl: #bldg-tan-mtl" id="bldg-tan" position="0 0 25" rotation="0 180 0" scale=".75 .75 .75"></a-entity>
             <a-entity obj-model="obj: #bldg-tan-obj; mtl: #bldg-tan-mtl" id="bldg-tan-1" position="30 -1 30" rotation="0 180 0" scale=".75 .75 .75"></a-entity>
             <a-entity obj-model="obj: #bldg-tan-obj; mtl: #bldg-tan-mtl" id="bldg-tan-2" position="-30 -1 30" rotation="0 180 0" scale=".75 .75 .75"></a-entity>
+            <a-entity obj-model="obj: #car-lamba-sport-grey-obj; mtl: #car-lamba-sport-grey-mtl" id="car" position="4 -1 4" rotation="0 -90 0" scale="1 1 1">
+                <a-animation attribute="position" dur="10000" easing="linear" delay="1000" from="4 -1 4" to="-20 -1 4" repeat="indefinite"></a-animation>
+            </a-entity>
             <a-sky src="img/chandler-park.png"></a-sky>
         </a-entity>
 
