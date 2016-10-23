@@ -1,7 +1,7 @@
 /**
  * Created by Brendan on 9/26/2016.
  */
-var x = document.getElementById("demo");
+// var x = document.getElementById("demo");
 
 //Global coordinates object -- will eventually have latitude and longitude properties
 var coord = {};
@@ -24,7 +24,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        // x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
 
@@ -77,8 +77,8 @@ function showPosition(position) {
         renderNoParks();
     }
 
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
+    // x.innerHTML = "Latitude: " + position.coords.latitude +
+    //     "<br>Longitude: " + position.coords.longitude;
 }
 
 function renderNoParks() {

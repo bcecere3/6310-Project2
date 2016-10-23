@@ -141,4 +141,14 @@ footer.page-footer .footer-copyright {
   .brand-logo {
     font-size: 20px !important;
   }
+
+  /* line 114, ../sass/screen.scss */
+  #housing {
+    min-height: 100vh;
+  }
+
+  /* line 117, ../sass/screen.scss */
+  .title {
+    font-size: 50px;
+  }
 }
