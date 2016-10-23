@@ -137,7 +137,7 @@ function checkCandler(c){
 
 function renderCandler() {
     console.log("rendering candler");
-    document.getElementById("modalTrigger").innerHTML ="<i class='material-icons white-text right' style='font-size: 32px'>arrow_drop_up</i>Chandler Park";
+    document.getElementById("modalTrigger").innerHTML ="<i class='material-icons white-text right' style='font-size: 32px'>arrow_drop_up</i>Candler Park";
     document.getElementById("modalTrigger").setAttribute('href','#candler-modal');
     var p = document.querySelector('#candler-entity');
     p.setAttribute("visible", true);
