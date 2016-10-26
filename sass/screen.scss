@@ -106,7 +106,12 @@ footer.page-footer{
   font-size: 18px;
   background-color: #172853;
 }
-
+#location-dropdown{
+  z-index: 1000;
+}
+#construction-img{
+  width: 600px;
+}
 @media (max-width: 450px) {
   .brand-logo{
     font-size: 20px !important;
@@ -116,5 +121,8 @@ footer.page-footer{
   }
   .title{
     font-size: 50px;
+  }
+  #construction-img{
+    width: 300px;
   }
 }

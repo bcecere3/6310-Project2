@@ -11,11 +11,22 @@ var piedmont = {"SW": [33.781807, -84.378261], "NW": [33.787427, -84.378041], "N
 var candler = {"SW": [33.764867, -84.339388], "NW": [33.771697, -84.339267], "NE": [33.771736, -84.335976], "SE":[33.764887, -84.336280]};
 var centennial = {"SW": [33.758985, -84.394250], "NW": [33.761977, -84.395000], "NE": [33.762235, -84.392123], "SE":[33.759010, -84.392228]};
 
+//Variables set when users pick a scene via nav dropdown
+var useMyLoc;
+var inPiedmont;
+var inCandler;
+var inCentennial;
+var loc;
+
 //Initializations when DOM is loaded
 $(document).ready(function () {
     $(".button-collapse").sideNav();
     $("#geo-inner").css("margin-top","23em");
     $('#modalTrigger').leanModal();
+    $(".dropdown-button").dropdown();
+    loc = getPark();
+    console.log(inCandler);
+    getLocation();
 });
 
 //getLocation is called once when the locations page is loaded
@@ -37,29 +48,30 @@ function showPosition(position) {
     //Hides the pre-loader
     $('#geo-loader-wrapper').css("display","none");
     $('.preloader-wrapper').removeClass("active");
+    //var loc = getPark();
 
-    /* -----------------------------------------------------------------------
-    * Using user's real coordinates by default.
-    * If you want to manually set your coordinates in one of the three parks,
-    * uncomment the coordinate pair for that park. Make sure all other pairs
-    * are commented out.
-    * -----------------------------------------------------------------------*/
-    //---Gets real coordinates of device
-    // coord.latitude = position.coords.latitude;
-    // coord.longitude = position.coords.longitude;
-    //
-    //---Manually sets user's location to Piedmont Park
-    // coord.latitude = 33.782932;
-    // coord.longitude = -84.375238;
-    //
-    //---Manually sets user's location to Candler Park
-    coord.latitude = 33.767877;
-    coord.longitude = -84.337627;
-    //
-    //---Manually sets user's location to Centennial Olympic Park
-    // coord.latitude = 33.759117;
-    // coord.longitude = -84.392987;
+    //-------This block is only relevant when a user picks a scene via the nav dropdown
+    loc = getPark();
+    if(loc == "myLoc"){
+        coord.latitude = position.coords.latitude;
+        coord.longitude = position.coords.longitude;
+    }
+    if(loc == "piedmont"){
+        coord.latitude = 33.782932;
+        coord.longitude = -84.375238;
+    }
+    if(loc == "candler"){
+        coord.latitude = 33.767877;
+        coord.longitude = -84.337627;
+    }
+    if(loc == "centennial"){
+        coord.latitude = 33.759117;
+        coord.longitude = -84.392987;
+    }
+    //-------------------------------------------------------------------------------------
 
+
+    //----------This block is used when the user either a) first loads the locations page or b) selects "use my location" via nav dropdown-----//
     //If user is in Piedmont Park, render that park scene
     if(checkPiedmont(coord)){
         renderPiedmont();
@@ -76,12 +88,98 @@ function showPosition(position) {
     else{
         renderNoParks();
     }
+    //-------------------------------------------------------------------------------------------------
 
     // x.innerHTML = "Latitude: " + position.coords.latitude +
     //     "<br>Longitude: " + position.coords.longitude;
 }
 
+//Getter method for park selection
+function getPark() {
+    if(useMyLoc){
+       return "myLoc";
+    }
+    if(inPiedmont){
+       return "piedmont";
+    }
+    if(inCandler){
+        return "candler";
+    }
+    if(inCentennial){
+        return "centennial";
+    }
+}
+
+//When switching scenes, I wipe the aframe clean and re-render
+function reset() {
+    var p = document.querySelector('#piedmont-entity');
+    var c = document.querySelector('#candler-entity');
+    var o = document.querySelector('#centennial-entity');
+    p.setAttribute("visible", false);
+    c.setAttribute("visible", false);
+    o.setAttribute("visible", false);
+}
+
+//When user select "use my location"
+function useMyLocation() {
+    useMyLoc = true;
+    inPiedmont = false;
+    inCandler = false;
+    inCentennial = false;
+    renderNoParks();
+}
+
+//When user selects "Piedmont Park"
+function  usePiedmont() {
+    useMyLoc = false;
+    inPiedmont = true;
+    inCandler = false;
+    inCentennial = false;
+    reset();
+    var scene = document.querySelector('a-scene');
+    scene.setAttribute("visible", true);
+    $('#no-park').css("display","none");
+    $('#scene-container').css("display","initial");
+    $('#modalTrigger').css("display","initial");
+    renderPiedmont();
+    // scene.reload();
+    console.log("use piedmont");
+
+}
+
+//When user selects "Candler Park"
+function useCandler() {
+    useMyLoc = false;
+    inPiedmont = false;
+    inCandler = true;
+    inCentennial = false;
+    reset();
+    var scene = document.querySelector('a-scene');
+    scene.setAttribute("visible", true);
+    $('#no-park').css("display","none");
+    $('#scene-container').css("display","initial");
+    $('#modalTrigger').css("display","initial");
+    renderCandler();
+}
+
+//When user selects "Centennial Park"
+function useCentennial() {
+    useMyLoc = false;
+    inPiedmont = false;
+    inCandler = false;
+    inCentennial = true;
+    reset();
+    var scene = document.querySelector('a-scene');
+    scene.setAttribute("visible", true);
+    $('#no-park').css("display","none");
+    $('#scene-container').css("display","initial");
+    $('#modalTrigger').css("display","initial");
+    renderCentennial();
+}
+
+//Hides a-scene and renders null state
 function renderNoParks() {
+    reset();
     var p = document.querySelector('#scene');
     p.setAttribute("visible", false);
     $('#scene-container').css("display","none");
@@ -89,6 +187,7 @@ function renderNoParks() {
     $('#no-park').css("display","initial");
 }
 
+//Check user's real geo coords against my saved coordinates that bound piedmont park
 function checkPiedmont(c){
     var lat = c.latitude;
     var long = c.longitude;
@@ -116,6 +215,7 @@ function renderPiedmont() {
     p.setAttribute("visible", true);
 }
 
+//Check user's real geo coords against my saved coordinates that bound candler park
 function checkCandler(c){
     var lat = c.latitude;
     var long = c.longitude;
@@ -143,6 +243,7 @@ function renderCandler() {
     p.setAttribute("visible", true);
 }
 
+//Check user's real geo coords against my saved coordinates that bound centennial park
 function checkCentennial(c){
     var lat = c.latitude;
     var long = c.longitude;
@@ -169,3 +270,34 @@ function renderCentennial() {
     var p = document.querySelector('#centennial-entity');
     p.setAttribute("visible", true);
 }
+
+//Open bottom modal when you click on the info sign in the piedmont scene
+document.querySelector('.clickListener').addEventListener('click', function () {
+    $('#modalTrigger').click();
+});
+//change color of rings in rotating ring animation by clicking on blue nucleus
+//The rings sometimes block themselves so I added a click listener to each ring
+document.querySelector('#nucleus').addEventListener('click', function () {
+    var c = "#"+((1<<24)*Math.random()|0).toString(16);
+    document.getElementById("ring1").setAttribute('material', 'color', c);
+    document.getElementById("ring2").setAttribute('material', 'color', c);
+    document.getElementById("ring3").setAttribute('material', 'color', c);
+});
+document.querySelector('#ring1').addEventListener('click', function () {
+    var c = "#"+((1<<24)*Math.random()|0).toString(16);
+    document.getElementById("ring1").setAttribute('material', 'color', c);
+    document.getElementById("ring2").setAttribute('material', 'color', c);
+    document.getElementById("ring3").setAttribute('material', 'color', c);
+});
+document.querySelector('#ring2').addEventListener('click', function () {
+    var c = "#"+((1<<24)*Math.random()|0).toString(16);
+    document.getElementById("ring1").setAttribute('material', 'color', c);
+    document.getElementById("ring2").setAttribute('material', 'color', c);
+    document.getElementById("ring3").setAttribute('material', 'color', c);
+});
+document.querySelector('#ring3').addEventListener('click', function () {
+    var c = "#"+((1<<24)*Math.random()|0).toString(16);
+    document.getElementById("ring1").setAttribute('material', 'color', c);
+    document.getElementById("ring2").setAttribute('material', 'color', c);
+    document.getElementById("ring3").setAttribute('material', 'color', c);
+});

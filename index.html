@@ -12,16 +12,40 @@
     <link href="stylesheets/screen.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+
+<ul id="location-dropdown" class="dropdown-content">
+    <li><a href="locations.html" onclick="useMyLocation()">Use My Location</a></li>
+    <li><a href="locations.html" onclick="usePiedmont()">Piedmont Park</a></li>
+    <li><a href="locations.html" onclick="useCandler()">Candler Park</a></li>
+    <li><a href="locations.html" onclick="useCentennial()">Centennial Olympic Park</a></li>
+</ul>
 <!--Fixed Navbar -->
 <div class="navbar-fixed">
     <nav role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Atlanta Property Management</a>
+        <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Green Property Management</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="locations.html">Development Locations</a></li>
+                <!--<li><a href="locations.html">Development Locations</a></li>-->
+                <li><a class="dropdown-button" href="!#" data-activates="location-dropdown">Development Locations<i class="material-icons right">arrow_drop_down</i></a></li>
+
             </ul>
             <ul id="nav-mobile" class="side-nav">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="locations.html">Development Locations</a></li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header">Locations<i class="material-icons right">arrow_drop_down</i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="locations.html" onclick="useMyLocation()">Use My Location</a></li>
+                                    <li><a href="locations.html" onclick="usePiedmont()">Piedmont Park</a></li>
+                                    <li><a href="locations.html" onclick="useCandler()">Candler Park</a></li>
+                                    <li><a href="locations.html" onclick="useCentennial()">Centennial Olympic Park</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!--<li><a href="locations.html">Development Locations</a></li>-->
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
@@ -50,7 +74,7 @@
         <hr class="sep">
         <div class="row">
             <div class="col s12 center">
-                <p class="s-desc">For nearly eight years, Atlanta Property Management (APM) has been at the forefront of providing affordable housing for many low-income families in the city of Atlanta. Though housing remains APM’s core mission, in recent years, the authority has broadened its focus to include not just high quality housing in amenity-rich neighborhoods but a model that promotes self-sufficiency and active aging, improves the overall quality of life of our participants, and contributes to the betterment of the surrounding communities. Today, APM is the largest public housing authority in Georgia and one of the largest in the nation, serving more than 50,000 people.</p>
+                <p class="s-desc">For nearly eight years, Green Property Management (GPM) has been at the forefront of providing affordable housing for families in the city of Atlanta. Over the past 20 years, Atlanta population has tripled making affordable housing difficult to find. To combat this shortage, we are introducing the Green Re-purposing Initiative. The City of Atlanta has given GPM authority to convert largely unused park property into affordable housing.</p>
             </div>
         </div>
     </div>

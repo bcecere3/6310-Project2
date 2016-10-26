@@ -136,19 +136,34 @@ footer.page-footer .footer-copyright {
   background-color: #172853;
 }
 
+/* line 109, ../sass/screen.scss */
+#location-dropdown {
+  z-index: 1000;
+}
+
+/* line 112, ../sass/screen.scss */
+#construction-img {
+  width: 600px;
+}
+
 @media (max-width: 450px) {
-  /* line 111, ../sass/screen.scss */
+  /* line 116, ../sass/screen.scss */
   .brand-logo {
     font-size: 20px !important;
   }
 
-  /* line 114, ../sass/screen.scss */
+  /* line 119, ../sass/screen.scss */
   #housing {
     min-height: 100vh;
   }
 
-  /* line 117, ../sass/screen.scss */
+  /* line 122, ../sass/screen.scss */
   .title {
     font-size: 50px;
+  }
+
+  /* line 125, ../sass/screen.scss */
+  #construction-img {
+    width: 300px;
   }
 }
